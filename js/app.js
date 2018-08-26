@@ -38,6 +38,9 @@ Player.prototype.update = function(dt) {
     // all computers.
 };
 
+Player.prototype.handleInput = function(dt) {
+};
+
 // Draw the player on the screen, required method for game
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
