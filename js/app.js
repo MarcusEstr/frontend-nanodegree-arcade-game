@@ -12,6 +12,7 @@ var Enemy = function(x, y) {
     this.y = y;
     this.height = 65; //pixels
     this.width = 95;
+    this.collision = false;
 };
 
 // Update the enemy's position, required method for game
@@ -63,6 +64,12 @@ Player.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    //40 height and above is the first row - water
+    if (game && player.y < 40) {
+        game = false;
+        reset();
+        winCondition();
+    }
 };
 
 // Draw the player on the screen, required method for game
@@ -91,7 +98,7 @@ Player.prototype.handleInput = function(direction) {
 
 const enemyPosition = [55, 140, 230, 315];
 const player = new Player(202, 400, 'images/char-boy.png');
-const allEnemies = enemyPosition.map((y, index) => {
+let allEnemies = enemyPosition.map((y, index) => {
     return new Enemy( (-100 * (index + 1)), y);
 });
 // Place the player object in a variable called player
@@ -115,4 +122,12 @@ document.addEventListener('keyup', function(e) {
 function collision(px, py, pw, ph, ex, ey, ew, eh) {
     //If the two characters are within proximity of each other then return True - Collision!:
     return (Math.abs(px - ex) * 2 < pw + ew) && (Math.abs(py - ey) * 2 < ph + eh);
+}
+
+function winCondition() {
+    console.log('you won!');
+}
+
+function reset() {
+    allEnemies = [];
 }
