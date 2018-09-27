@@ -123,7 +123,8 @@ function winCondition() {
 }
 
 function reset() {
-    
+    player.x = 202;
+    player.y = 400;
 }
 
 // When the user clicks on "x", close the modal.
