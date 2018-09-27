@@ -20,7 +20,23 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    this.x += 150 * dt;
+    //If enemies are outside of the screen, send them back in via a random number
+    if (this.x > ctx.canvas.width + this.width) {
+        this.x = -200 * Math.floor(Math.random() * 4) + 1;
+    } else { //otherwise, they must simply move across the screen
+        this.x += 150 * dt;
+    }
+
+    if (collision(player.x, player.y, player.width, player.height, this.x, this.y, this.width, this.height)) {
+        this.collision = true;
+        if (player) {
+            player.x = 202;
+            player.y = 400;
+        } else {
+            this.collision = false;
+        }
+    }
+
 };
 
 // Draw the enemy on the screen, required method for game
@@ -73,7 +89,7 @@ Player.prototype.handleInput = function(direction) {
 //var player = new Player();
 //var allEnemies = [new Enemy()]; 
 
-const enemyPosition = [55, 140, 230];
+const enemyPosition = [55, 140, 230, 315];
 const player = new Player(202, 400, 'images/char-boy.png');
 const allEnemies = enemyPosition.map((y, index) => {
     return new Enemy( (-100 * (index + 1)), y);
@@ -93,3 +109,10 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+//player x coord, player y coord, player width, player height, 
+//enemy x, enemy y coord, enemy width, enemy height
+function collision(px, py, pw, ph, ex, ey, ew, eh) {
+    //If the two characters are within proximity of each other then return True - Collision!:
+    return (Math.abs(px - ex) * 2 < pw + ew) && (Math.abs(py - ey) * 2 < ph + eh);
+}
