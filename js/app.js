@@ -1,5 +1,9 @@
-let debug = false;
-let game = true;
+game = true;
+// Modal:
+const modal = document.getElementById('winnerModal');
+const span = document.getElementsByClassName("close")[0];
+const playAgain = document.getElementById("playAgain");
+
 // Enemies our player must avoid
 var Enemy = function(x, y) {
     // Variables applied to each of our instances go here,
@@ -125,9 +129,27 @@ function collision(px, py, pw, ph, ex, ey, ew, eh) {
 }
 
 function winCondition() {
-    console.log('you won!');
+    modal.style.display = "block";
 }
 
 function reset() {
     allEnemies = [];
+}
+
+// When the user clicks on "x", close the modal.
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it.
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+// Restart game.
+playAgain.onclick = function() {
+    modal.style.display = "none";
+    //initializeGame();
 }
