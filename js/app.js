@@ -57,7 +57,7 @@ Player.prototype.render = function() {
 Player.prototype.handleInput = function(direction) {
     const horizontal = 101;
     const vertical = 83;
-
+   console.log('before if - x axis: ', this.x);
     if (direction === 'left' && this.x - horizontal >= 0) {
         this.x -= horizontal;
     } else if (direction === 'right' && this.x + horizontal < ctx.canvas.width) {
@@ -67,6 +67,7 @@ Player.prototype.handleInput = function(direction) {
     } else if (direction === 'down' && this.y + vertical < ctx.canvas.height - 200) {
         this.y += vertical;
     }
+    console.log('after if - x axis: ', this.x);
 };
 
 // Now instantiate your objects.
@@ -75,7 +76,7 @@ Player.prototype.handleInput = function(direction) {
 //var allEnemies = [new Enemy()]; 
 
 const enemyPosition = [55, 140, 230];
-const player = new Player(201, 400, 'images/char-boy.png');
+const player = new Player(202, 400, 'images/char-boy.png');
 const allEnemies = enemyPosition.map((y, index) => {
     return new Enemy( (-100 * (index + 1)), y);
 });
