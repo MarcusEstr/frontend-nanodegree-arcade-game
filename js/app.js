@@ -20,6 +20,7 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    this.x += 150 * dt;
 };
 
 // Draw the enemy on the screen, required method for game
@@ -54,28 +55,17 @@ Player.prototype.render = function() {
 };
 
 Player.prototype.handleInput = function(direction) {
-    // if (direction === 'left'){
-    //     this.x -= 100;
-    // } else if (direction === 'right') {
-    //     this.x += 100;
-    // } else if (direction === 'down') {
-    //     this.y += 83;
-    // } else if (direction === 'up') {
-    //     this.y -= 83;
-    // }
-    switch(direction) {
-        case 'left':
-            this.x -= 102;
-            break;
-        case 'right':
-            this.x += 102;
-            break;
-        case 'up':
-            this.y -= 83;
-            break;
-        case 'down':
-            this.y += 83;
-            break;
+    const horizontal = 101;
+    const vertical = 83;
+
+    if (direction === 'left' && this.x - horizontal >= 0) {
+        this.x -= horizontal;
+    } else if (direction === 'right' && this.x + horizontal < ctx.canvas.width) {
+        this.x += horizontal;
+    } else if (direction === 'up' && this.y - vertical >= 0) {
+        this.y -= vertical;
+    } else if (direction === 'down' && this.y + vertical < ctx.canvas.height - 200) {
+        this.y += vertical;
     }
 };
 
@@ -90,7 +80,6 @@ const allEnemies = enemyPosition.map((y, index) => {
     return new Enemy( (-100 * (index + 1)), y);
 });
 // Place the player object in a variable called player
-
 
 
 // This listens for key presses and sends the keys to your
