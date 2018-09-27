@@ -6,11 +6,6 @@ const playAgain = document.getElementById("playAgain");
 
 // Enemies our player must avoid
 var Enemy = function(x, y) {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
-
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
     this.x = x;
     this.y = y;
@@ -49,7 +44,6 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-// Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
 var Player = function(x, y, image) {
@@ -71,7 +65,7 @@ Player.prototype.update = function(dt) {
     //40 height and above is the first row - water
     if (game && player.y < 40) {
         game = false;
-        reset();
+        allEnemies = [];
         winCondition();
     }
 };
@@ -97,16 +91,12 @@ Player.prototype.handleInput = function(direction) {
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
-//var player = new Player();
-//var allEnemies = [new Enemy()]; 
-
 const enemyPosition = [55, 140, 230, 315];
+// Place the player object in a variable called player
 const player = new Player(202, 400, 'images/char-boy.png');
 let allEnemies = enemyPosition.map((y, index) => {
     return new Enemy( (-100 * (index + 1)), y);
 });
-// Place the player object in a variable called player
-
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
@@ -133,7 +123,7 @@ function winCondition() {
 }
 
 function reset() {
-    allEnemies = [];
+    
 }
 
 // When the user clicks on "x", close the modal.
@@ -151,5 +141,5 @@ window.onclick = function(event) {
 // Restart game.
 playAgain.onclick = function() {
     modal.style.display = "none";
-    //initializeGame();
+    reset();
 }
