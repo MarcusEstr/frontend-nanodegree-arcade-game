@@ -1,3 +1,5 @@
+let debug = false;
+let game = true;
 // Enemies our player must avoid
 var Enemy = function(x, y) {
     // Variables applied to each of our instances go here,
@@ -8,6 +10,8 @@ var Enemy = function(x, y) {
     this.sprite = 'images/enemy-bug.png';
     this.x = x;
     this.y = y;
+    this.height = 65; //pixels
+    this.width = 95;
 };
 
 // Update the enemy's position, required method for game
@@ -26,12 +30,14 @@ Enemy.prototype.render = function() {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-var Player = function(x, y) {
+var Player = function(x, y, image) {
     //This image/sprite is for our player character
     //This uses a helper to easily load images.
-    this.sprite = 'images/char-boy.png';
+    this.sprite = image;
     this.x = x;
     this.y = y;
+    this.height = 75;
+    this.width = 65;
 };
 
 // Update the player's position, required method for game
@@ -47,15 +53,28 @@ Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-Player.prototype.handleInput = function(dt) {
+Player.prototype.handleInput = function(direction) {
+    if (direction === 'left'){
+        this.x -= 100;
+    } else if (direction === 'right') {
+        this.x += 100;
+    } else if (direction === 'down') {
+        this.y += 83;
+    } else if (direction === 'up') {
+        this.y -= 83;
+    }
 };
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 //var player = new Player();
-//var allEnemies = [new Enemy()]; //Do not want to use var in modern JS.
-const player = new Player();
-const allEnemies = [];
+//var allEnemies = [new Enemy()]; 
+
+const enemyPosition = [55, 140, 230];
+const player = new Player(201, 400, 'images/char-boy.png');
+const allEnemies = enemyPosition.map((y, index) => {
+    return new Enemy( (-100 * (index + 1)), y);
+});
 // Place the player object in a variable called player
 
 
