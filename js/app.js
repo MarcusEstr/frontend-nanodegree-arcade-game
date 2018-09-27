@@ -65,7 +65,7 @@ Player.prototype.update = function(dt) {
     //40 height and above is the first row - water
     if (game && player.y < 40) {
         game = false;
-        allEnemies = [];
+        //allEnemies = [];
         winCondition();
     }
 };
@@ -123,8 +123,11 @@ function winCondition() {
 }
 
 function reset() {
+    //Reset player
     player.x = 202;
     player.y = 400;
+    //
+    game = true;
 }
 
 // When the user clicks on "x", close the modal.
