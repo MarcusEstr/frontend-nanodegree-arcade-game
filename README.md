@@ -15,9 +15,13 @@ Enemies move horiziontally across the screen. The player must avoid these as the
 
 Once the player reaches the top of the screen, they win!
 
-## Dependencies
+## Dependencies/References
 
 This program uses HTML, CSS, and JavaScript to function. 
+
+The arrow keys graphic on the introductory modal comes from freeware game tool [Pygame](https://www.pygame.org/news).
+
+The fonts Open Sans and Press Start P2 come from Google Fonts. 
 
 
 

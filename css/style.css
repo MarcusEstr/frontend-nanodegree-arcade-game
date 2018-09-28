@@ -34,6 +34,7 @@ body {
     width: 60%;
     text-align: center;
     font-size: 1.5em;
+    font-family: 'Open Sans', sans-serif;
 }
 
 /* The Close Button */
@@ -61,4 +62,8 @@ body {
 
 #playAgain:hover, #startGame:hover {
     background-color: #0be8d5;
+}
+
+#game-title {
+    font-family: 'Press Start 2P', cursive;
 }
