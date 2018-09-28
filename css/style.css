@@ -14,6 +14,16 @@ body {
     background-color: rgba(0,0,0,0.4); 
 }
 
+.modal-start {
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%;
+    background-color: rgba(0,0,0,0.4); 
+}
+
 /*Modal box*/
 .modal-content {
     background-color: #fefefe;
