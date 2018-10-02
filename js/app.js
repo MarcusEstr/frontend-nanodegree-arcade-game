@@ -20,11 +20,11 @@ var Enemy = function(x, y) {
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-    //If enemies are outside of the screen, send them back in via a random number
+    //If enemies are outside of the screen, send them back in via a random number:
     if (this.x > ctx.canvas.width + this.width) {
-        this.x = -200 * Math.floor(Math.random() * 4) + 1;
-    } else { //otherwise, they must simply move across the screen
-        this.x += 150 * dt;
+        this.x = -300 * Math.floor(Math.random() * 4) + 1;
+    } else { //otherwise, they must simply move across the screen:
+        this.x += 250 * dt;
     }
 
     if (collision(player.x, player.y, player.width, player.height, this.x, this.y, this.width, this.height)) {
@@ -85,11 +85,11 @@ Player.prototype.handleInput = function(direction) {
     }
 };
 
-const enemyPosition = [55, 140, 230, 315];
+const enemyPosition = [65, 150, 230, 315];
 // Place the player object in a variable called player
 const player = new Player(202, 400, 'images/char-boy.png');
 let allEnemies = enemyPosition.map((y, index) => {
-    return new Enemy( (-100 * (index + 1)), y);
+    return new Enemy( (-300 * (index + 1)), y);
 });
 
 // This listens for key presses and sends the keys to your
