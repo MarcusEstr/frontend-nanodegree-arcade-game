@@ -8,10 +8,11 @@ const modalstart = document.getElementById('startModal');
 const startgame = document.getElementById("startGame");
 
 // Enemies our player must avoid
-var Enemy = function(x, y) {
+var Enemy = function(x, y, speed) {
     this.sprite = 'images/enemy-bug.png';
     this.x = x;
     this.y = y;
+    this.speed = speed;
     this.height = 65; //pixels
     this.width = 95;
     this.collision = false;
@@ -24,7 +25,7 @@ Enemy.prototype.update = function(dt) {
     if (this.x > ctx.canvas.width + this.width) {
         this.x = -300 * Math.floor(Math.random() * 4) + 1;
     } else { //otherwise, they must simply move across the screen:
-        this.x += 250 * dt;
+        this.x += this.speed * dt;
     }
 
     if (collision(player.x, player.y, player.width, player.height, this.x, this.y, this.width, this.height)) {
@@ -85,12 +86,20 @@ Player.prototype.handleInput = function(direction) {
     }
 };
 
-const enemyPosition = [65, 150, 230, 315];
+//const enemyPosition = [65, 150, 230, 315];
 // Place the player object in a variable called player
 const player = new Player(202, 400, 'images/char-boy.png');
-let allEnemies = enemyPosition.map((y, index) => {
-    return new Enemy( (-300 * (index + 1)), y);
-});
+//map creates new array.
+// let allEnemies = enemyPosition.map((y, index) => {
+//     return new Enemy( (-300 * (index + 1)), y);
+// });
+const bugRow1 = new Enemy(-100, 65, 250);
+const bugRow2 = new Enemy(-300, 150, 500);
+const bugRow3 = new Enemy(-300, 230, 300);
+const bugRow4 = new Enemy(-300, 315, 400);
+
+const allEnemies = [];
+allEnemies.push(bugRow1, bugRow2, bugRow3, bugRow4);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method.
