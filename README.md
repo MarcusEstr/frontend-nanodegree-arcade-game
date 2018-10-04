@@ -21,4 +21,6 @@ This program uses HTML, CSS, and JavaScript.
 
 The arrow keys graphic on the introductory modal comes from freeware game tool [Pygame](https://www.pygame.org/news).
 
+All other graphics (player, enemy, background) provided by [Udacity Frontend Web Developer Nanodegree](https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001) project files.
+
 The fonts "Open Sans" and "Press Start P2" come from [Google Fonts](https://fonts.google.com/). 

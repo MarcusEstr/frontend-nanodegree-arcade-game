@@ -21,9 +21,9 @@ var Enemy = function(x, y, speed) {
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-    //If enemies are outside of the screen, send them back in via a random number:
+    //If enemies are outside of the screen, send them back in from left side of screen:
     if (this.x > ctx.canvas.width + this.width) {
-        this.x = -300 * Math.floor(Math.random() * 4) + 1;
+        this.x = -300;
     } else { //otherwise, they must simply move across the screen:
         this.x += this.speed * dt;
     }
@@ -62,7 +62,6 @@ Player.prototype.update = function(dt) {
     //40 height and above is the location of the top row (Water row)
     if (game && player.y < 40) {
         game = false;
-        //allEnemies = [];
         winCondition();
     }
 };
@@ -86,13 +85,10 @@ Player.prototype.handleInput = function(direction) {
     }
 };
 
-//const enemyPosition = [65, 150, 230, 315];
 // Place the player object in a variable called player
 const player = new Player(202, 400, 'images/char-boy.png');
-//map creates new array.
-// let allEnemies = enemyPosition.map((y, index) => {
-//     return new Enemy( (-300 * (index + 1)), y);
-// });
+
+//Creating enemies(x, y, speed)
 const bugRow1 = new Enemy(-100, 65, 250);
 const bugRow2 = new Enemy(-300, 150, 500);
 const bugRow3 = new Enemy(-300, 230, 300);
