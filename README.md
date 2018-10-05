@@ -7,6 +7,12 @@ frontend-nanodegree-arcade-game
 
 This game was made as part of the Udacity Frontend Nanodegree for Project 3. It is based on the classic arcade game Frogger.
 
+## How to Run the Game
+
+If you wish to open the game in a browser, simply [follow this link](https://marcusestr.github.io/frontend-nanodegree-arcade-game/). 
+
+Alternately, [go to the repository](https://github.com/MarcusEstr/frontend-nanodegree-arcade-game) and clone/download it to your PC. Then open index.html in the browser of your choice. 
+
 ## How to Play
 
 Players control the hero character using their keyboard's arrow keys. Up, down, left, and right move the character in those directions on screen. Each press moves the character by one square on screen.
